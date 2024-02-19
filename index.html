@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>King App Store</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="theme-color" content="#ffffff"/>
+	<link rel="stylesheet" href="https://seanzwx.github.io/style/style.css">
+	<script src="https://seanzwx.github.io/lib/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+	<div style="height: 50px; background-color: #FF474C; display: flex;justify-content: center; align-items: center;">
+		<span style="font-size: 20px;color: #fff;font-weight: bold;">KING APP STORE</span>
+	</div>
+
+		<div>
+			<a v-for="it in appList" :href="it.url">
+				<div style="display: flex;align-items: center;padding: 16px">
+					<div>
+						<div style="width: 55px; height: 55px;border-radius: 110px; padding: 3px;background-color: #f6f6f6;">
+							<img :src="it.icon" style="width: 100%; height: 100%; border-radius: 10px;"/>
+						</div>
+					</div>
+					<div style="padding: 0px 16px 0px 16px;flex-grow: 1">
+						<div>{{it.title}}</div>
+						<div style="font-size: 13px;color: #9a9a9a;margin-top: 5px;">{{it.subtitle}}</div>
+					</div>
+					<div>
+						<img class="app-download" src="https://www.svgrepo.com/show/522833/download-minimalistic.svg"/>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+
+</div>
+</body>
+
+<script>
+	window.onload = function()
+	{
+		let root = "";
+		new Vue({
+			el: '#app',
+			data: {
+				appList: [{
+					icon: "https://i.postimg.cc/9FdHYHMR/Kingstar.png",
+					title: "KingStar",
+					subtitle: "Kingstar_v1.0 All Live Matches Available",
+					url: "https://android.sarfraj.workers.dev/0:/Kingstar_v1.0.apk",
+				}, {
+					icon: "https://i.postimg.cc/gkdSDsWy/YouTube.png",
+					title: "YouTube",
+					subtitle: "Arm-v7a_v19.04.37-patches_v2.220.5",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADlA112917",
+				}, {
+					icon: "https://i.postimg.cc/gkdSDsWy/YouTube.png",
+					title: "YouTube",
+					subtitle: "Arm64-v8a_v19.04.37-patches_v2.220.5",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADkw112919",
+				}, {
+					icon: "https://i.postimg.cc/RC7WVKhr/Mucro-G-Re.png",
+					title: "MicroG",
+					subtitle: "MicroG RE Version:4.7",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADFh108578",
+				}, {
+					icon: "https://i.postimg.cc/hvk2FCjn/MMT-YT.png",
+					title: "YouTube Extended",
+					subtitle: "YouTube ReVanced Extended Monet MMT Version:19.02.39 Arm-v7a",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADtA107720",
+				}, {
+					icon: "https://i.postimg.cc/hvk2FCjn/MMT-YT.png",
+					title: "YouTube Extended",
+					subtitle: "YouTube ReVanced Extended Monet MMT Version:19.02.39 Arm64-v8a",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADsw107722",
+				}, {
+					icon: "https://i.postimg.cc/qvvmf7gz/Micro.png",
+					title: "Vanced MicroG",
+					subtitle: "MicroG_v0.3.0.234914",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADrg108595",
+				}, {
+					icon: "https://i.postimg.cc/VkD1W50g/Ymusic.png",
+					title: "YMusic",
+					subtitle: "YMusic_v3.8.11 | Premium ",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADyB108905",
+				}, {
+					icon: "https://i.postimg.cc/YCfBY46n/WhatsApp.png",
+					title: "YMWhtsapp",
+					subtitle: "YMWhatsApp_v36.1_Clone version 2.24.1.78",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgAD6x108126",
+				}, {
+					icon: "https://i.postimg.cc/T3XXKjD5/Instagram.png",
+					title: "InstaFlow",
+					subtitle: "InstaFlow_V15_arm-v7a_Clone Update 312.1.0.34.111",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADDA107381",
+				}, {
+					icon: "https://i.postimg.cc/T3XXKjD5/Instagram.png",
+					title: "InstaFlow",
+					subtitle: "InstaFlow_V15_arm64_Clone Update 312.1.0.34.111",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADDg107379",
+				}, {
+					icon: "https://i.postimg.cc/8cbfB89C/Aeroinsta.png",
+					title: "AeroInsta",
+					subtitle: "AeroInsta V24.0.0 Clone",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADdR114455",
+				}, {
+					icon: "https://i.postimg.cc/3w6rLfZ2/Instagold.png",
+					title: "InstaGold",
+					subtitle: "InstaGold v8.0",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADCA108586",
+				}, {
+					icon: "https://i.postimg.cc/D0Q2wv3c/instapro.png",
+					title: "InstaPro",
+					subtitle: "My InstaPro v10.45f",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADyg108588",
+				}, {
+					icon: "https://i.postimg.cc/RCwCRRJn/myinsta.png",
+					title: "MyInsta",
+					subtitle: "MyInsta_v21_311.0.0.32.118",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADzB108590",
+				}, {
+					icon: "https://i.postimg.cc/1tMNpP0q/mx-player.png",
+					title: "MX Player Pro",
+					subtitle: "MX_Player_Pro_Extra-v1.78.5 (Arm32-v7a)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADig110948",
+				}, {
+					icon: "https://i.postimg.cc/1tMNpP0q/mx-player.png",
+					title: "MX Player Pro",
+					subtitle: "MX_Player_Pro_Extra-v1.78.5 (Arm64-v8a)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADiQ110946",
+				}, {
+					icon: "https://i.postimg.cc/4NJVjR9F/Vidmate.png",
+					title: "Vidmate",
+					subtitle: "VidMate_V5.1904_MOD",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADRx112597",
+				}, {
+					icon: "https://i.postimg.cc/pVQK0LpF/Snaptube.png",
+					title: "SnapTube",
+					subtitle: "Snaptube_VIP_v7.14.1_MOD",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADmh107412",
+				}, {
+					icon: "https://i.postimg.cc/nh5bt9YN/Vanced-Tube.png",
+					title: "Vanced Tube",
+					subtitle: "Vanced_Tube_v4.9.80.187 [MOD]",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADsw108592",
+				}, {
+					icon: "https://i.postimg.cc/prB8yqgZ/NewPip.png",
+					title: "NewPipe",
+					subtitle: "NewPipe_v0.26.1[Mod]",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADxj107414",
+				}, {
+					icon: "https://i.postimg.cc/BbfS38k6/Powertube.png",
+					title: "PowerTube",
+					subtitle: "PowerTube_Premium_v5.0.3",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADjQ108584",
+				}, {
+					icon: "https://i.postimg.cc/J4PFc4QY/Smart-Tube.png",
+					title: "SmartTube",
+					subtitle: "SmartTube_stable_20.90 Armeabi-v7a",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADz0108745",
+				}, {
+					icon: "https://i.postimg.cc/SNDCh1LQ/Apkpure.png",
+					title: "ApkPure",
+					subtitle: "Latest Version 3.19.75",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADZD107418",
+				}, {
+					icon: "https://i.postimg.cc/XYDYmzBk/Tincat.png",
+					title: "Tincat Browser",
+					subtitle: "Tincat_5.0.0 (Ads Free)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADBw108658",
+				}, {
+					icon: "https://i.postimg.cc/vTNgNzN8/1DM.webp",
+					title: "1DM",
+					subtitle: "1DM-v16_build_30234-Mod (Arm-v7a)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADNA107450",
+				}, {
+					icon: "https://i.postimg.cc/vTNgNzN8/1DM.webp",
+					title: "1DM",
+					subtitle: "1DM_v16_build_30234_Mod (Arm64_v8a)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADNg107454",
+				}, {
+					icon: "https://i.postimg.cc/VkrHsq23/zapya.webp",
+					title: "Zapya",
+					subtitle: "Zapya - File Transfer_v6.5.5 (VIP)",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADFx107462",
+				}, {
+					icon: "https://i.postimg.cc/JzfYsyLt/inshare.jpg",
+					title: "InShare",
+					subtitle: "InShare_2.1.0_Mod",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADyg107466",
+				}, {
+					icon: "https://i.postimg.cc/MTZWs6V8/web-Video-cast.jpg",
+					title: "Web Video Cast",
+					subtitle: "Web_Video_Caster Premium-v5.9.2",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADbB107688",
+				}, {
+					icon: "https://i.postimg.cc/nzdngyG9/via-browser.png",
+					title: "Via Browser",
+					subtitle: "Via Browser_v5.3.0.b7-MOD",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADTR107690",
+				}, {
+					icon: "https://i.postimg.cc/VL2032cW/MT-Manager.webp",
+					title: "MT Manager",
+					subtitle: "MT Manager_14.6 Clone",
+					url: "https://cdn.filetodirectlink.workers.dev/1969096500/AgADHT114457",
+				}, {
+					icon: "https://i.postimg.cc/VL2032cW/MT-Manager.webp",
+					title: "MT Manager",
+					subtitle: "MT Manager_14.5 - (VIP)",
+					url: "tps://cdn.filetodirectlink.workers.dev/1969096500/AgADUR108656",
+				}]
+			}
+		});
+	}
+
+</script>
+</html>
