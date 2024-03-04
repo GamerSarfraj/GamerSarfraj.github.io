@@ -1,79 +1,84 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Player</title>
-  <link rel="shortcut icon" type="image/x-icon" href="https://i.postimg.cc/YC3Npf10/image.webp">
-   <link rel="stylesheet" href="/Player/Player.css">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .calculator {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        .calculator input[type="text"] {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+        .calculator input[type="button"] {
+            width: 48%;
+            margin-right: 4%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .calculator input[type="button"]:last-child {
+            margin-right: 0;
+        }
+    </style>
 </head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <input type="button" value="1" onclick="appendNumber('1')">
+        <input type="button" value="2" onclick="appendNumber('2')">
+        <input type="button" value="3" onclick="appendNumber('3')">
+        <input type="button" value="+" onclick="appendOperator('+')">
+        <input type="button" value="4" onclick="appendNumber('4')">
+        <input type="button" value="5" onclick="appendNumber('5')">
+        <input type="button" value="6" onclick="appendNumber('6')">
+        <input type="button" value="-" onclick="appendOperator('-')">
+        <input type="button" value="7" onclick="appendNumber('7')">
+        <input type="button" value="8" onclick="appendNumber('8')">
+        <input type="button" value="9" onclick="appendNumber('9')">
+        <input type="button" value="*" onclick="appendOperator('*')">
+        <input type="button" value="0" onclick="appendNumber('0')">
+        <input type="button" value="." onclick="appendNumber('.')">
+        <input type="button" value="/" onclick="appendOperator('/')">
+        <input type="button" value="C" onclick="clearResult()">
+        <input type="button" value="=" onclick="calculate()">
+    </div>
 
-<body>  
-	<script src="https://cdn.jwplayer.com/libraries/SAHhwvZq.js"></script>
-<script> jwplayer.defaults = jwDefaults; </script>
-    <div id="jwplayerDiv"></div>
     <script>
-        const queryParams = new URLSearchParams(window.location.search);
-        const mpdLink = queryParams.get('mpd');
-        const m3u8Link = queryParams.get('m3u8');
-        const keyId = queryParams.get('keyId');
-        const key = queryParams.get('key');
-
-        function playMedia() {
-            let playerConfig = {
-            	
-            skin: {
-       name: "Denver",
-       active: "RED", /* kuch bhi colour dalke experiment kro*/
-       inactive: "white",/* kuch bhi colour dalke experiment kro*/
-       background: "black"/* kuch bhi colour dalke experiment kro*/
-    },
-                "autostart": true,
-                "preload": "none",
-                "repeat": true,
-                "Volume": "100",
-                "mute": false,
-                "stretching": "exactfit",
-                "width": "100%",
-                "cast": {},
-                "setPip": false
-            };
-
-            if (mpdLink) {
-                playerConfig = {
-                    ...playerConfig,
-                    file: mpdLink,
-                    type: "dash",
-                    drm: {
-                        clearkey: {
-                            key: key,
-                            keyId: keyId
-                        }
-                    }
-                };
-            } else if (m3u8Link) {
-                playerConfig = {
-                    ...playerConfig,
-                    file: m3u8Link,
-                    type: "hls",
-                    drm: {}
-                };
-            }
-
-            const playerInstance = jwplayer('jwplayerDiv').setup(playerConfig);
+        function appendNumber(number) {
+            document.getElementById("result").value += number;
         }
 
-        window.onload = playMedia;
-        </script>
+        function appendOperator(operator) {
+            document.getElementById("result").value += operator;
+        }
 
-<script>
-setTimeout(videovisible, 5000)
-function videovisible() {
-    document.getElementById('loading').style.display = 'none'
-}
-</script> 
+        function clearResult() {
+            document.getElementById("result").value = "";
+        }
 
+        function calculate() {
+            var result = eval(document.getElementById("result").value);
+            document.getElementById("result").value = result;
+        }
+    </script>
 </body>
 </html>
