@@ -1,0 +1,15 @@
+#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-INDEPENDENT-SEGMENTS
+
+#EXT-X-STREAM-INF:BANDWIDTH=458480,AVERAGE-BANDWIDTH=458480,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=426x240,FRAME-RATE=25.000,AUDIO="program_audio_0"
+https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/b7406499e5c19eb71cbe137a2d33f458/bandwidth/458480.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=760320,AVERAGE-BANDWIDTH=760320,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=640x360,FRAME-RATE=25.000,AUDIO="program_audio_0"
+https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/0b0e708f7cb343481c45fc2fc2ab4795/bandwidth/760320.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1256200,AVERAGE-BANDWIDTH=1256200,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=854x480,FRAME-RATE=25.000,AUDIO="program_audio_0"
+https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/3abe2cd8758db222fb5ced64ee144bd7/bandwidth/1256200.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1525700,AVERAGE-BANDWIDTH=1525700,CODECS="avc1.4d4029,mp4a.40.2",RESOLUTION=1024x576,FRAME-RATE=25.000,AUDIO="program_audio_0"
+https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/858919b4fc96ec71fff34998f23b5d70/bandwidth/1525700.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2334200,AVERAGE-BANDWIDTH=2334200,CODECS="avc1.4d4029,mp4a.40.2",RESOLUTION=1280x720,FRAME-RATE=25.000,AUDIO="program_audio_0"
+https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/fe642b68503d97a6d531cfa23b4e1c9e/bandwidth/2334200.m3u8
+#EXT-X-MEDIA:TYPE=AUDIO,LANGUAGE="eng",NAME="Alternate Audio",AUTOSELECT=YES,DEFAULT=YES,CHANNELS="2",GROUP-ID="program_audio_0",URI="https://dai.google.com/linear/hls/pb/event/ACMbQPITRvKQ46rSG8AUNw/stream/f62ad46f-fc4a-4d6e-99a5-bd5f0d75b1a7:SIN/variant/82b7d696239e7fc4b02e5d9c12c13053/bandwidth/000.m3u8"
