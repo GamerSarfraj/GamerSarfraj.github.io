@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3U8 Content Viewer - White Theme</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            font-family: 'Roboto', sans-serif; /* Modern font */
+            background: #f5f5f5; /* Light gray background */
+            color: #333; /* Dark text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        .container {
+            width: 100%;
+            height: 100%; /* Full height */
+            max-width: 1200px; /* Max width for large screens */
+            padding: 15px; /* Reduced padding */
+            background: #ffffff; /* White container */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            display: flex;
+            flex-direction: column; /* Stack vertically */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222; /* Dark gray */
+            font-size: 1.8em; /* Slightly smaller for mobile */
+            margin: 0 0 15px 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px; /* Reduced padding */
+            margin-bottom: 10px; /* Reduced margin */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            background: #fafafa; /* Off-white */
+            color: #333;
+            font-size: 0.9em; /* Smaller font */
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007BFF; /* Blue border */
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3); /* Subtle shadow */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 8px; /* Reduced gap */
+            margin-bottom: 10px; /* Reduced margin */
+            flex-wrap: nowrap; /* Keep buttons in one line */
+            overflow-x: auto; /* Scroll horizontally if needed */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        button {
+            padding: 6px 12px; /* Smaller padding */
+            background: #007BFF; /* Blue button */
+            color: #fff;
+            border: none;
+            border-radius: 4px; /* Smaller radius */
+            cursor: pointer;
+            font-size: 0.8em; /* Smaller font */
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #0056b3; /* Darker blue */
+            transform: scale(1.02); /* Slight scale-up */
+        }
+
+        button.clear {
+            background: #d32f2f; /* Red */
+        }
+
+        button.clear:hover {
+            background: #b71c1c; /* Darker red */
+        }
+
+        button.quality {
+            background: #28a745; /* Green */
+        }
+
+        button.quality:hover {
+            background: #218838; /* Darker green */
+        }
+
+        #qualityOptions {
+            display: none; /* Hidden by default */
+            flex: 1; /* Fill available space */
+            min-height: 0; /* Allow shrinking */
+            overflow-y: auto; /* Vertical scrolling */
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 5px;
+            padding: 12px; /* Reduced padding */
+            background: #f8f8f8; /* Light gray */
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Inner shadow */
+            margin-bottom: 10px; /* Reduced margin */
+        }
+
+        .quality-option {
+            display: flex;
+            flex-direction: column;
+            gap: 6px; /* Reduced gap */
+            margin: 8px 0; /* Reduced margin */
+            padding: 10px; /* Reduced padding */
+            background: #ffffff; /* White */
+            border-radius: 5px;
+            border: 1px solid #e0e0e0; /* Lighter border */
+            transition: background-color 0.2s;
+        }
+
+        .quality-option:hover {
+            background: #f0faff; /* Light blue hover */
+        }
+
+        .quality-option p {
+            margin: 0;
+            font-size: 0.85em; /* Smaller font */
+            word-break: break-all;
+            color: #333;
+        }
+
+        .quality-option .resolution {
+            font-weight: bold; /* Bold resolution */
+            font-size: 1em; /* Slightly smaller */
+            color: #222; /* Darker */
+        }
+
+        .quality-option button {
+            background: #17a2b8; /* Cyan */
+            padding: 5px 10px; /* Smaller padding */
+            font-size: 0.75em; /* Smaller font */
+            align-self: flex-start;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .quality-option button:hover {
+            background: #138496; /* Darker cyan */
+            transform: scale(1.05); /* Slight scale-up */
+        }
+
+        pre {
+            flex: 1; /* Fill available space */
+            min-height: 0; /* Allow shrinking */
+            background: #f8f8f8; /* Light gray */
+            padding: 15px; /* Reduced padding */
+            border-radius: 5px;
+            border: 1px solid #ddd; /* Light border */
+            color: #333;
+            font-size: 0.85em; /* Smaller font */
+            overflow-y: auto; /* Scrollable */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            box-sizing: border-box;
+            display: none; /* Hidden by default */
+        }
+
+        #error {
+            color: #d32f2f; /* Red for errors */
+            margin: 8px 0; /* Reduced margin */
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>M3U8 Content Viewer</h1>
+        <input type="text" id="m3u8Url" placeholder="Enter M3U8 URL">
+        <div class="button-container">
+            <button onclick="fetchM3U8()">Fetch M3U8</button>
+            <button class="clear" onclick="clearContent()">Clear</button>
+            <button class="quality" onclick="showQualityOptions()" id="qualityButton" style="display: none;">Quality</button>
+        </div>
+        <div id="error"></div>
+        <div id="qualityOptions"></div>
+        <pre id="m3u8Content"></pre>
+    </div>
+
+    <script>
+        // Source URL to fetch hdnea parameter
+        const sourceUrl = 'https://dai.google.com/linear/hls/event/jirIBSMoQDWBeTr-f6WNpA/master.m3u8';
+        let currentM3U8Content = ''; // Store the fetched M3U8 content
+        let baseUrl = ''; // Store the base URL for quality variants
+
+        // Function to fetch hdnea parameter
+        async function getHdnea() {
+            try {
+                const response = await fetch(sourceUrl, {
+                    method: 'GET',
+                    redirect: 'follow'
+                });
+                const finalUrl = response.url;
+                const urlObj = new URL(finalUrl);
+                return urlObj.searchParams.get('hdnea') || null;
+            } catch (error) {
+                console.error('Error fetching hdnea:', error);
+                return null;
+            }
+        }
+
+        async function fetchM3U8() {
+            const urlInput = document.getElementById('m3u8Url').value;
+            const contentDiv = document.getElementById('m3u8Content');
+            const errorDiv = document.getElementById('error');
+            const qualityButton = document.getElementById('qualityButton');
+            const qualityOptions = document.getElementById('qualityOptions');
+
+            // Clear previous content
+            contentDiv.textContent = '';
+            contentDiv.style.display = 'block';
+            qualityOptions.style.display = 'none';
+            qualityOptions.innerHTML = '';
+            errorDiv.textContent = '';
+
+            // Validate input URL
+            if (!urlInput) {
+                errorDiv.textContent = 'Error: Please enter an M3U8 URL.';
+                contentDiv.style.display = 'none';
+                return;
+            }
+
+            // Fetch hdnea parameter
+            const hdnea = await getHdnea();
+            let fetchUrl = urlInput;
+
+            // Append hdnea if available
+            if (hdnea) {
+                fetchUrl = urlInput.includes('?') ? `${urlInput}&hdnea=${hdnea}` : `${urlInput}?hdnea=${hdnea}`;
+            } else {
+                errorDiv.textContent = 'Warning: Could not fetch hdnea parameter.';
+            }
+
+            try {
+                const response = await fetch(fetchUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/vnd.apple.mpegurl'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const text = await response.text();
+                if (text) {
+                    currentM3U8Content = text;
+                    contentDiv.textContent = text;
+                    baseUrl = urlInput.substring(0, urlInput.lastIndexOf('/') + 1);
+                    qualityButton.style.display = 'inline-block';
+                } else {
+                    errorDiv.textContent = 'No content found in the M3U8 file.';
+                    contentDiv.style.display = 'none';
+                }
+            } catch (error) {
+                errorDiv.textContent = `Error: ${error.message}`;
+                contentDiv.style.display = 'none';
+            }
+        }
+
+        async function showQualityOptions() {
+            const qualityOptions = document.getElementById('qualityOptions');
+            const contentDiv = document.getElementById('m3u8Content');
+            const errorDiv = document.getElementById('error');
+
+            // Hide M3U8 content
+            contentDiv.style.display = 'none';
+
+            // Validate M3U8 content
+            if (!currentM3U8Content) {
+                errorDiv.textContent = 'Error: Please fetch M3U8 content first.';
+                return;
+            }
+
+            qualityOptions.style.display = 'block';
+            qualityOptions.innerHTML = '';
+
+            // Parse M3U8 content
+            const lines = currentM3U8Content.split('\n');
+            const variants = [];
+            let currentResolution = '';
+
+            lines.forEach((line, index) => {
+                if (line.startsWith('#EXT-X-STREAM-INF')) {
+                    const resolutionMatch = line.match(/RESOLUTION=(\d+x\d+)/);
+                    if (resolutionMatch) {
+                        currentResolution = resolutionMatch[1];
+                    }
+                } else if (line.includes('.m3u8') && !line.startsWith('#') && currentResolution) {
+                    variants.push({ resolution: currentResolution, url: line.trim() });
+                    currentResolution = '';
+                }
+            });
+
+            if (variants.length === 0) {
+                qualityOptions.innerHTML = '<p>No quality variants found.</p>';
+                return;
+            }
+
+            // Create quality option elements
+            variants.forEach(variant => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quality-option';
+
+                // Construct full URL (without hdnea)
+                const fullVariantUrl = variant.url.startsWith('http') ? variant.url : `${baseUrl}${variant.url}`;
+
+                // Display resolution
+                const resolutionP = document.createElement('p');
+                resolutionP.className = 'resolution';
+                resolutionP.textContent = variant.resolution;
+                optionDiv.appendChild(resolutionP);
+
+                // Display URL (up to .m3u8)
+                const urlP = document.createElement('p');
+                urlP.textContent = fullVariantUrl.split('?')[0];
+                optionDiv.appendChild(urlP);
+
+                // Copy button
+                const copyButton = document.createElement('button');
+                copyButton.textContent = 'Copy';
+                copyButton.onclick = () => copyToClipboard(fullVariantUrl.split('?')[0]);
+                optionDiv.appendChild(copyButton);
+
+                qualityOptions.appendChild(optionDiv);
+            });
+        }
+
+        function copyToClipboard(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('URL copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy URL:', err);
+                alert('Failed to copy URL. Please copy manually.');
+            });
+        }
+
+        function clearContent() {
+            const urlInput = document.getElementById('m3u8Url');
+            const contentDiv = document.getElementById('m3u8Content');
+            const errorDiv = document.getElementById('error');
+            const qualityButton = document.getElementById('qualityButton');
+            const qualityOptions = document.getElementById('qualityOptions');
+
+            urlInput.value = '';
+            contentDiv.textContent = '';
+            contentDiv.style.display = 'none';
+            errorDiv.textContent = '';
+            qualityButton.style.display = 'none';
+            qualityOptions.style.display = 'none';
+            qualityOptions.innerHTML = '';
+            currentM3U8Content = '';
+            baseUrl = '';
+        }
+    </script>
+</body>
+</html>
