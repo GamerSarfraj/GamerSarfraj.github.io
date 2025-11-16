@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonyLIV HD Cookie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="data:application/manifest+json,{
+        &quot;name&quot;:&quot;SonyLIV HD Cookie&quot;,
+        &quot;start_url&quot;:&quot;.&quot;,
+        &quot;display&quot;:&quot;fullscreen&quot;,
+        &quot;background_color&quot;:&quot;#0a0e1a&quot;,
+        &quot;theme_color&quot;:&quot;#7c3aed&quot;
+    }">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{height:100%;width:100%;overflow:hidden}
+        body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e2e8f0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+        .title-bar{background:linear-gradient(135deg,#1a1f2e,#0f1424);padding:18px 16px;text-align:center;width:100%;box-shadow:0 3px 12px rgba(0,0,0,0.3);position:relative}
+        .title{font-size:1.45rem;font-weight:700;background:linear-gradient(90deg,#a78bfa,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:0.5px}
+        .subtitle{font-size:0.78rem;opacity:0.72;margin-top:5px}
+        .content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100%;padding:16px 14px;overflow-y:auto}
+        .box{margin-bottom:18px;width:100%;max-width:460px}
+        .box-title{font-size:0.88rem;font-weight:700;text-transform:uppercase;margin-bottom:8px;text-align:left;opacity:0.95;letter-spacing:0.8px}
+        .cookie{background:#0f1424;border:1.3px solid #334155;border-radius:13px;padding:17px;font-family:monospace;font-size:0.89rem;word-break:break-all;display:flex;align-items:center;justify-content:center;text-align:center;color:#94a3b8;min-height:82px;line-height:1.5;box-shadow:inset 0 2px 7px rgba(0,0,0,0.18)}
+        .cookie.value{color:#e2e8f0;font-weight:500}
+        .btn-group{display:flex;gap:11px;margin-top:10px}
+        .btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 15px;border:none;border-radius:11px;font-weight:600;font-size:0.9rem;cursor:pointer;transition:all .2s;box-shadow:0 3px 10px rgba(0,0,0,0.18)}
+        .refresh{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:white}
+        .refresh:hover{background:linear-gradient(135deg,#6d28d9,#5b21b6);transform:translateY(-1px)}
+        .copy{background:#1e293b;color:#e2e8f0;border:1.3px solid #334155}
+        .copy:hover{background:#334155}
+        .copy.copied{background:#10b981;color:white;border:none}
+        .status{font-size:0.82rem;text-align:center;margin:12px 0;opacity:0.84;font-weight:500}
+        .loading{color:#a78bfa}
+        .success{color:#10b981}
+        .error{color:#f87171}
+        .spinner{width:14px;height:14px;border:2.5px solid #334155;border-top:2.5px solid white;border-radius:50%;animation:s 0.85s linear infinite;display:none}
+        @keyframes s{to{transform:rotate(360deg)}}
+        .footer{font-size:0.68rem;text-align:center;opacity:0.52;margin-top:auto;padding:11px 0}
+        .icon{width:1.18em;height:1.18em;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+        .refresh-icon{transform-origin:center}
+        @keyframes r{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+        @media (max-width: 480px) {
+            .title{font-size:1.4rem}
+            .btn{padding:9px 13px;font-size:0.88rem}
+            .cookie{padding:15px;font-size:0.87rem;min-height:78px}
+            .content{padding:14px 12px}
+            .btn-group{gap:9px}
+            .box-title{font-size:0.86rem}
+            .title-bar{padding:16px 14px}
+        }
+    </style>
+</head>
+<body>
+    <div class="title-bar">
+        <h1 class="title">SonyLIV HD Cookie</h1>
+        <p class="subtitle">hdnea + hdntl • Manual refresh</p>
+    </div>
+
+    <div class="content">
+        <!-- hdnea Box -->
+        <div class="box">
+            <div class="box-title">HDNEA COOKIE</div>
+            <div id="hdnea" class="cookie">Loading hdnea...</div>
+            <div class="btn-group">
+                <button id="refresh-hdnea" class="btn refresh">
+                    <svg class="icon refresh-icon" viewBox="0 0 24 24">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                    <div class="spinner" id="spin-hdnea"></div>
+                    <span id="btnText-hdnea">Refresh</span>
+                </button>
+                <button id="copy-hdnea" class="btn copy">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect>
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+
+        <!-- hdntl Box -->
+        <div class="box">
+            <div class="box-title">HDNTL COOKIE</div>
+            <div id="hdntl" class="cookie">Loading hdntl...</div>
+            <div class="btn-group">
+                <button id="refresh-hdntl" class="btn refresh">
+                    <svg class="icon refresh-icon" viewBox="0 0 24 24">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                    <div class="spinner" id="spin-hdntl"></div>
+                    <span id="btnText-hdntl">Refresh</span>
+                </button>
+                <button id="copy-hdntl" class="btn copy">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect>
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+        </div>
+
+        <div id="status" class="status loading">Tap Refresh to load</div>
+
+        <div class="footer">Last: <span id="time">Never</span></div>
+    </div>
+
+    <script>
+        const API = 'https://apiv4.sonyliv.com/AGL/4.7/A/ENG/MWEB/IN/BR/CONTENT/VIDEOURL/VOD/1000051729';
+        const BASE_URL = 'https://dishmt.slivcdn.com/hls/live/2011671/SETHD/master.m3u8';
+
+        const hdneaEl = document.getElementById('hdnea');
+        const hdntlEl = document.getElementById('hdntl');
+        const statusEl = document.getElementById('status');
+        const timeEl = document.getElementById('time');
+
+        let fetching = false;
+        let hdneaCache = null;
+        let hdntlCache = null;
+
+        function now() { 
+            return new Date().toLocaleTimeString('en-IN', {
+                hour: 'numeric', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: true
+            });
+        }
+
+        async function fetchHdnea() {
+            const res = await fetch(API, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'User-Agent': 'Mozilla/5.0 (Linux; Android 12; SM-S908B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36',
+                    'Referer': 'https://www.sonyliv.com/',
+                    'Origin': 'https://www.sonyliv.com',
+                    'Sec-Fetch-Mode': 'cors'
+                }
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+            if (json.resultCode !== 'OK') throw new Error(json.errorDescription || 'Access denied');
+            const videoUrl = json.resultObj?.videoURL || '';
+            if (!videoUrl) throw new Error('No video URL');
+            const match = videoUrl.match(/hdnea=([^&]+)/);
+            if (!match) throw new Error('No hdnea found');
+            return match[1];
+        }
+
+        async function fetchHdntl(hdneaValue) {
+            const fullUrl = `${BASE_URL}?hdnea=${hdneaValue}`;
+            const masterRes = await fetch(fullUrl);
+            if (!masterRes.ok) throw new Error('Failed to fetch master.m3u8');
+            const masterText = await masterRes.text();
+            const match = masterText.match(/hdntl=([^"/\s]+)/);
+            return match ? match[1] : 'Not found';
+        }
+
+        async function refreshHdneaOnly() {
+            if (fetching) return;
+            fetching = true;
+            hdneaEl.textContent = 'Loading...';
+            hdneaEl.className = 'cookie';
+            const spin = document.getElementById('spin-hdnea');
+            const btnText = document.getElementById('btnText-hdnea');
+            const icon = document.getElementById('refresh-hdnea').querySelector('.refresh-icon');
+            spin.style.display = 'block';
+            btnText.textContent = 'Loading...';
+            icon.style.animation = 'r 1.2s cubic-bezier(0.4,0,0.2,1) infinite';
+
+            try {
+                const hdneaValue = await fetchHdnea();
+                hdneaEl.textContent = `hdnea=${hdneaValue}`;
+                hdneaEl.className = 'cookie value';
+                hdneaCache = hdneaValue;
+                statusEl.textContent = 'hdnea loaded!';
+                statusEl.className = 'status success';
+                timeEl.textContent = now();
+            } catch (e) {
+                hdneaEl.textContent = `Error: ${e.message}`;
+                hdneaEl.className = 'cookie';
+                statusEl.textContent = 'hdnea failed';
+                statusEl.className = 'status error';
+            } finally {
+                spin.style.display = 'none';
+                btnText.textContent = 'Refresh';
+                icon.style.animation = '';
+                fetching = false;
+            }
+        }
+
+        async function refreshHdntlOnly() {
+            if (fetching) return;
+            fetching = true;
+            hdntlEl.textContent = 'Loading...';
+            hdntlEl.className = 'cookie';
+            const spin = document.getElementById('spin-hdntl');
+            const btnText = document.getElementById('btnText-hdntl');
+            const icon = document.getElementById('refresh-hdntl').querySelector('.refresh-icon');
+            spin.style.display = 'block';
+            btnText.textContent = 'Loading...';
+            icon.style.animation = 'r 1.2s cubic-bezier(0.4,0,0.2,1) infinite';
+
+            try {
+                if (!hdneaCache) throw new Error('hdnea not loaded');
+                const hdntlValue = await fetchHdntl(hdneaCache);
+                hdntlEl.textContent = `hdntl=${hdntlValue}`;
+                hdntlEl.className = 'cookie value';
+                hdntlCache = hdntlValue;
+                statusEl.textContent = 'hdntl loaded!';
+                statusEl.className = 'status success';
+                timeEl.textContent = now();
+            } catch (e) {
+                hdntlEl.textContent = `Error: ${e.message}`;
+                hdntlEl.className = 'cookie';
+                statusEl.textContent = 'hdntl failed';
+                statusEl.className = 'status error';
+            } finally {
+                spin.style.display = 'none';
+                btnText.textContent = 'Refresh';
+                icon.style.animation = '';
+                fetching = false;
+            }
+        }
+
+        async function refreshBoth() {
+            await refreshHdneaOnly();
+            if (hdneaCache) await refreshHdntlOnly();
+        }
+
+        // Copy functions
+        function copyText(el) {
+            return async () => {
+                const text = el.textContent.trim();
+                if (text.includes('Error') || text.includes('Loading')) {
+                    alert('No valid cookie to copy!');
+                    return;
+                }
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const copyBtn = event.target.closest('.btn');
+                    copyBtn.innerHTML = `
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        Copied!
+                    `;
+                    copyBtn.className = 'btn copy copied';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = `
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect>
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                            </svg>
+                            Copy
+                        `;
+                        copyBtn.className = 'btn copy';
+                    }, 2000);
+                } catch {
+                    alert('Copy failed.');
+                }
+            };
+        }
+
+        // Setup buttons
+        document.getElementById('refresh-hdnea').onclick = refreshHdneaOnly;
+        document.getElementById('refresh-hdntl').onclick = refreshHdntlOnly;
+        document.getElementById('copy-hdnea').onclick = copyText(hdneaEl);
+        document.getElementById('copy-hdntl').onclick = copyText(hdntlEl);
+
+        // Initial load
+        window.onload = () => {
+            refreshBoth();
+        };
+    </script>
+</body>
+</html>
